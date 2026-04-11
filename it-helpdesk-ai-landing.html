@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT Helpdesk AI | Automate IT Support Tickets</title>
+  <meta name="description" content="IT Helpdesk AI helps mid-size companies and startups automate repetitive IT tickets, reduce costs, and scale support with AI.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0f1e;
+      --surface: #111a30;
+      --surface-2: #16213d;
+      --primary: #1a73e8;
+      --primary-soft: rgba(26, 115, 232, 0.18);
+      --text: #e9efff;
+      --muted: #9fb0d8;
+      --border: rgba(130, 167, 245, 0.22);
+      --success: #3ddc97;
+      --shadow: 0 14px 38px rgba(0, 0, 0, 0.42);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(circle at top right, rgba(26, 115, 232, 0.22) 0%, rgba(10, 15, 30, 0) 36%),
+                  linear-gradient(180deg, #0a0f1e 0%, #090d1a 60%, #070a14 100%);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 88px 0;
+    }
+
+    .section h2 {
+      font-size: clamp(1.65rem, 3.2vw, 2.4rem);
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-subtext {
+      color: var(--muted);
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(10, 15, 30, 0.82);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-inner {
+      min-height: 74px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.03rem;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-mark {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 0 7px var(--primary-soft);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      font-weight: 600;
+      transition: transform 0.24s ease, box-shadow 0.24s ease, background-color 0.24s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2a82f3, #1667d6);
+      box-shadow: 0 12px 25px rgba(26, 115, 232, 0.34);
+      color: #fff;
+    }
+
+    .btn-secondary {
+      border-color: var(--border);
+      background: rgba(255, 255, 255, 0.03);
+      color: #d9e6ff;
+    }
+
+    .hero {
+      padding: 92px 0 78px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.84rem;
+      color: #b4ccff;
+      background: rgba(26, 115, 232, 0.16);
+      border: 1px solid var(--border);
+      padding: 7px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4.4vw, 3.55rem);
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin-bottom: 18px;
+      max-width: 12ch;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.07rem;
+      max-width: 62ch;
+      margin-bottom: 28px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .stats-panel {
+      background: linear-gradient(160deg, #111c35, #12182b);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .stats-title {
+      font-size: 0.92rem;
+      color: #b6cbf8;
+      margin-bottom: 10px;
+    }
+
+    .stats-value {
+      font-size: clamp(2rem, 4vw, 2.7rem);
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .stats-note {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-6 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      background: linear-gradient(160deg, rgba(18, 31, 61, 0.95), rgba(14, 22, 41, 0.95));
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      font-size: 1.08rem;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: inline-grid;
+      place-items: center;
+      background: var(--primary-soft);
+      border: 1px solid var(--border);
+      margin-bottom: 12px;
+      color: #d9e8ff;
+      font-size: 1.08rem;
+      font-weight: 700;
+    }
+
+    .steps {
+      display: grid;
+      gap: 12px;
+    }
+
+    .step {
+      display: flex;
+      gap: 14px;
+      background: rgba(15, 26, 50, 0.85);
+      border: 1px solid var(--border);
+      padding: 15px 16px;
+      border-radius: 13px;
+    }
+
+    .step-num {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(26, 115, 232, 0.2);
+      border: 1px solid var(--border);
+      color: #d7e7ff;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .step p {
+      color: #dce8ff;
+    }
+
+    .roi-box {
+      display: grid;
+      gap: 12px;
+      background: linear-gradient(145deg, rgba(17, 30, 58, 0.98), rgba(12, 22, 42, 0.98));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .roi-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      font-size: 0.98rem;
+      color: #cfddfb;
+      border-bottom: 1px dashed rgba(146, 176, 238, 0.25);
+      padding-bottom: 10px;
+    }
+
+    .roi-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .roi-highlight {
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .pricing-card {
+      position: relative;
+      background: linear-gradient(160deg, rgba(18, 31, 61, 0.95), rgba(14, 22, 41, 0.95));
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .pricing-card.featured {
+      border-color: rgba(78, 145, 245, 0.75);
+      transform: translateY(-3px);
+      box-shadow: 0 20px 45px rgba(13, 57, 125, 0.5);
+    }
+
+    .badge {
+      position: absolute;
+      top: -12px;
+      right: 16px;
+      background: var(--primary);
+      border: 1px solid rgba(160, 196, 255, 0.45);
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .price {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .feature-list {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      color: #d6e5ff;
+      font-size: 0.95rem;
+    }
+
+    .feature-list li::before {
+      content: "•";
+      color: #66a2ff;
+      margin-right: 8px;
+    }
+
+    .demo-box {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: rgba(13, 22, 40, 0.9);
+      padding: 26px;
+    }
+
+    #chatbot-demo {
+      border: 1px dashed rgba(113, 161, 245, 0.55);
+      border-radius: 14px;
+      padding: 30px;
+      text-align: center;
+      background: rgba(26, 115, 232, 0.08);
+      margin-bottom: 14px;
+      color: #d8e8ff;
+      font-weight: 600;
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    form {
+      background: rgba(13, 22, 42, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .input-group {
+      display: grid;
+      gap: 7px;
+    }
+
+    label {
+      font-size: 0.9rem;
+      color: #c8d9ff;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      padding: 11px 12px;
+      font: inherit;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: rgba(94, 151, 246, 0.9);
+      box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    footer {
+      padding: 32px 0 44px;
+      border-top: 1px solid var(--border);
+      color: #a8bde6;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      color: #c0d4fa;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .contact-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-grid,
+      .grid-3,
+      .grid-6 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero h1 {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .section {
+        padding: 72px 0;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .pricing-grid,
+      .grid-3,
+      .grid-6 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 74px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .hero-ctas {
+        flex-direction: column;
+      }
+
+      .roi-row {
+        font-size: 0.93rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="#">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>IT Helpdesk AI</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#how-it-works">How It Works</a>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+      </nav>
+      <a href="#contact" class="btn btn-primary">Book a Demo</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <span class="eyebrow">AI Support Automation for Growing Teams</span>
+          <h1>Automate 80% of IT Support Tickets with AI</h1>
+          <p>
+            Reduce helpdesk costs by $80K/year. One AI system replaces repetitive tickets, escalates
+            complex issues instantly, and gives you real-time analytics.
+          </p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="#contact">Book a Free Demo</a>
+            <a class="btn btn-secondary" href="#how-it-works">See How It Works</a>
+          </div>
+        </div>
+        <aside class="stats-panel reveal">
+          <p class="stats-title">Average Results for Mid-Size Companies</p>
+          <p class="stats-value">$80,000 / year</p>
+          <p class="stats-note">Typical savings by automating repetitive tickets and reducing manual workload.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="problem">
+      <div class="container">
+        <h2 class="reveal">The Cost of Manual IT Support Is Growing</h2>
+        <p class="section-subtext reveal">Most support teams are overloaded with repeat issues, limited visibility, and rising staffing costs.</p>
+        <div class="grid grid-3">
+          <article class="card reveal">
+            <h3>Your IT team wastes hours on repetitive tickets</h3>
+            <p>Reset passwords, software access requests, and common troubleshooting consume valuable technical time every day.</p>
+          </article>
+          <article class="card reveal">
+            <h3>No visibility into support patterns or bottlenecks</h3>
+            <p>Without clear analytics, recurring issues stay unresolved and strategic improvements get delayed.</p>
+          </article>
+          <article class="card reveal">
+            <h3>Hiring helpdesk agents costs $40K-60K per year each</h3>
+            <p>Scaling by headcount alone quickly increases payroll while operational efficiency remains constrained.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="solution">
+      <div class="container">
+        <h2 class="reveal">IT Helpdesk AI handles the repetitive work so your team focuses on what matters</h2>
+        <p class="section-subtext reveal">Automate first-line support while preserving human expertise for complex, high-impact cases.</p>
+        <div class="grid grid-3">
+          <article class="card reveal">
+            <div class="icon">AI</div>
+            <h3>Instant AI responses to common IT questions</h3>
+            <p>Employees get immediate answers in chat, reducing wait times and ticket backlog.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon">SL</div>
+            <h3>Automatic escalation to human agents via Slack</h3>
+            <p>Low-confidence requests are routed to the right person with context for faster resolution.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon">DB</div>
+            <h3>Real-time dashboard with ticket analytics</h3>
+            <p>Track trends, performance, and recurring issues to continuously improve IT operations.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <h2 class="reveal">How It Works</h2>
+        <p class="section-subtext reveal">A simple workflow designed to deliver fast resolutions while keeping your team in control.</p>
+        <div class="steps">
+          <div class="step reveal"><span class="step-num">1</span><p>Employee asks a question in the chat widget</p></div>
+          <div class="step reveal"><span class="step-num">2</span><p>AI searches knowledge base (Pinecone vector search)</p></div>
+          <div class="step reveal"><span class="step-num">3</span><p>High confidence → instant answer (Resolved)</p></div>
+          <div class="step reveal"><span class="step-num">4</span><p>Low confidence → escalated to human via Slack</p></div>
+          <div class="step reveal"><span class="step-num">5</span><p>All tickets logged and visualized in dashboard</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <h2 class="reveal">Core Features Built for B2B IT Teams</h2>
+        <p class="section-subtext reveal">Designed for mid-size companies and high-growth startups that need scalable support automation.</p>
+        <div class="grid grid-6">
+          <article class="card reveal"><h3>AI-Powered Responses (Claude API)</h3><p>Accurate responses for repetitive support questions in natural language.</p></article>
+          <article class="card reveal"><h3>Vector Knowledge Base (Pinecone)</h3><p>Semantic search over your documentation for high-relevance answers.</p></article>
+          <article class="card reveal"><h3>Auto-Escalation to Slack</h3><p>Seamless handoff to human support when confidence is low.</p></article>
+          <article class="card reveal"><h3>Real-Time Analytics Dashboard</h3><p>Monitor ticket flow, resolution rates, and recurring issue categories.</p></article>
+          <article class="card reveal"><h3>Ticket Logging (Airtable)</h3><p>Maintain a structured ticket history for audits and operational insights.</p></article>
+          <article class="card reveal"><h3>Mobile Responsive Chat Widget</h3><p>Support employees across desktop and mobile devices with consistent UX.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="roi">
+      <div class="container">
+        <h2 class="reveal">ROI Calculator</h2>
+        <p class="section-subtext reveal">A simple estimate of impact for a typical team.</p>
+        <div class="roi-box reveal">
+          <div class="roi-row"><span>Company with 3 helpdesk agents</span><strong>Model Scenario</strong></div>
+          <div class="roi-row"><span>Current cost</span><strong>$120,000/year</strong></div>
+          <div class="roi-row"><span>With IT Helpdesk AI</span><strong>$40,000/year</strong></div>
+          <div class="roi-row"><span>Annual savings</span><strong class="roi-highlight">$80,000</strong></div>
+          <div class="roi-row"><span>ROI</span><strong class="roi-highlight">6-8x in first year</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pricing">
+      <div class="container">
+        <h2 class="reveal">Pricing Plans</h2>
+        <p class="section-subtext reveal">Flexible options based on your support volume and integration complexity.</p>
+        <div class="pricing-grid">
+          <article class="pricing-card reveal">
+            <h3>Basic</h3>
+            <p class="price">$5,000-7,000 setup + $500/mo</p>
+            <ul class="feature-list">
+              <li>Chatbot + Knowledge base (top 20 FAQs)</li>
+              <li>Ticket system</li>
+              <li>Basic dashboard</li>
+              <li>1 month support</li>
+            </ul>
+          </article>
+
+          <article class="pricing-card featured reveal">
+            <span class="badge">Most Popular</span>
+            <h3>Professional</h3>
+            <p class="price">$10,000-15,000 setup + $1,000/mo</p>
+            <ul class="feature-list">
+              <li>Everything in Basic</li>
+              <li>2-3 system integrations</li>
+              <li>Custom AI training</li>
+              <li>Auto-escalation to Slack/Teams</li>
+              <li>3 months support</li>
+            </ul>
+          </article>
+
+          <article class="pricing-card reveal">
+            <h3>Enterprise</h3>
+            <p class="price">$20,000+ setup + $2,000/mo</p>
+            <ul class="feature-list">
+              <li>Everything in Professional</li>
+              <li>ServiceNow/JIRA integration</li>
+              <li>Active Directory integration</li>
+              <li>Advanced analytics</li>
+              <li>6 months support</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="demo">
+      <div class="container demo-box reveal">
+        <h2>See It In Action</h2>
+        <p class="section-subtext">Explore the live chatbot experience and workflow.</p>
+        <div id="chatbot-demo">Live Demo - Try it yourself</div>
+        <a class="btn btn-secondary" href="https://maggipop-pixel.github.io/it-helpdesk-chatbot/" target="_blank" rel="noopener noreferrer">
+          Open Live Chatbot Demo
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container contact-wrap">
+        <div class="reveal">
+          <h2>Ready to Cut Your IT Costs?</h2>
+          <p class="section-subtext">
+            Book a free 30-minute demo and see the ROI for your company.
+          </p>
+          <p class="muted">Built for IT leaders at mid-size companies and scaling startups that need faster, smarter support operations.</p>
+        </div>
+        <form class="reveal" action="#" method="post">
+          <div class="input-group">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required>
+          </div>
+          <div class="input-group">
+            <label for="company">Company</label>
+            <input id="company" name="company" type="text" required>
+          </div>
+          <div class="input-group">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required>
+          </div>
+          <div class="input-group">
+            <label for="employees">Number of employees</label>
+            <select id="employees" name="employees" required>
+              <option value="" selected disabled>Select range</option>
+              <option>10-50</option>
+              <option>50-200</option>
+              <option>200-500</option>
+              <option>500+</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us about your current helpdesk setup"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Book My Free Demo</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <p>IT Helpdesk AI — Built by Maggie, AI Automation Specialist</p>
+      <div class="footer-links">
+        <a href="#" aria-label="LinkedIn">LinkedIn</a>
+        <a href="#" aria-label="Upwork">Upwork</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+
+    reveals.forEach((item) => observer.observe(item));
+
+    const form = document.querySelector("form");
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const button = form.querySelector("button[type='submit']");
+      const original = button.textContent;
+      button.textContent = "Thanks! We will contact you shortly.";
+      button.disabled = true;
+      setTimeout(() => {
+        button.textContent = original;
+        button.disabled = false;
+        form.reset();
+      }, 2400);
+    });
+  </script>
+</body>
+</html>
