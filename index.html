@@ -786,25 +786,6 @@
   </div>
 </section>
 
-<script>
-// Animate bars when section is visible
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      document.querySelector('.bar-before').style.width = '100%';
-      document.querySelector('.bar-after').style.width = '3%';
-      document.querySelector('.bar-before2').style.width = '0%';
-      document.querySelector('.bar-after2').style.width = '78%';
-      document.querySelector('.bar-before3').style.width = '100%';
-      document.querySelector('.bar-after3').style.width = '50%';
-      document.querySelector('.bar-before4').style.width = '100%';
-      document.querySelector('.bar-after4').style.width = '50%';
-    }
-  });
-}, { threshold: 0.2 });
-
-observer.observe(document.querySelector('#before-after'));
-</script>
 
     <!-- CASE STUDY SECTION -->
 <section id="case-study" style="padding: 100px 0; background: #0d1526;">
@@ -1042,19 +1023,23 @@ observer.observe(document.querySelector('#before-after'));
 
     reveals.forEach((item) => observer.observe(item));
 
-    const form = document.querySelector("form");
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const button = form.querySelector("button[type='submit']");
-      const original = button.textContent;
-      button.textContent = "Thanks! We will contact you shortly.";
-      button.disabled = true;
-      setTimeout(() => {
-        button.textContent = original;
-        button.disabled = false;
-        form.reset();
-      }, 2400);
+// Before/After bars animation
+const barSection = document.querySelector('#before-after');
+if (barSection) {
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        document.querySelector('.bar-before').style.width = '100%';
+        document.querySelector('.bar-after').style.width = '3%';
+        document.querySelector('.bar-before2').style.width = '0%';
+        document.querySelector('.bar-after2').style.width = '78%';
+        document.querySelector('.bar-before3').style.width = '100%';
+        document.querySelector('.bar-after3').style.width = '50%';
+        document.querySelector('.bar-before4').style.width = '100%';
+        document.querySelector('.bar-after4').style.width = '50%';
+        barObserver.unobserve(entry.target);
+      }
     });
-  </script>
-</body>
-</html>
+  }, { threshold: 0.2 });
+  barObserver.observe(barSection);
+}
