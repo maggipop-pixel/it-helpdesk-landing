@@ -1033,5 +1033,16 @@
       }, 2400);
     });
   </script>
+<!-- Chat Widget -->
+<style>
+#chat-widget-btn{position:fixed;bottom:24px;right:24px;width:56px;height:56px;background:#2563eb;border-radius:50%;border:none;cursor:pointer;z-index:9999;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,99,235,0.5);}
+#chat-widget-btn svg{width:24px;height:24px;fill:white;}
+#chat-widget-popup{position:fixed;bottom:90px;right:24px;width:400px;height:550px;border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.5);z-index:9998;display:none;}
+#chat-widget-popup iframe{width:100%;height:100%;border:none;}
+</style>
+<button id="chat-widget-btn" onclick="toggleChat()"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></button>
+<div id="chat-widget-popup"><iframe src="https://maggipop-pixel.github.io/it-helpdesk-chatbot/"></iframe></div>
+<script>function toggleChat(){var p=document.getElementById('chat-widget-popup');p.style.display=p.style.display==='block'?'none':'block';}</script>
 </body>
 </html>
+
