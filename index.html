@@ -1058,6 +1058,45 @@
 <button id="chat-widget-btn" onclick="toggleChat()"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></button>
 <div id="chat-widget-popup"><iframe src="https://maggipop-pixel.github.io/it-helpdesk-chatbot/"></iframe></div>
 <script>function toggleChat(){var p=document.getElementById('chat-widget-popup');p.style.display=p.style.display==='block'?'none':'block';}</script>
+<!-- Cookie Consent Banner -->
+<div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; right:0; background:#0a0e27; color:#fff; padding:20px; box-shadow:0 -2px 20px rgba(0,0,0,0.3); z-index:9999; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+  <div style="max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:15px;">
+    <p style="margin:0; flex:1; min-width:280px; font-size:14px; line-height:1.5;">
+      🍪 We use cookies and analytics tools (Vercel Analytics, Microsoft Clarity) to understand how visitors use our site and improve your experience. 
+      <a href="/privacy.html" style="color:#60a5fa; text-decoration:underline;">Learn more</a>
+    </p>
+    <div style="display:flex; gap:10px;">
+      <button id="cookie-reject" style="background:transparent; color:#fff; border:1px solid #fff; padding:10px 20px; border-radius:6px; cursor:pointer; font-size:14px;">Reject</button>
+      <button id="cookie-accept" style="background:#3b82f6; color:#fff; border:none; padding:10px 20px; border-radius:6px; cursor:pointer; font-size:14px; font-weight:600;">Accept</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var consent = localStorage.getItem('cookie_consent');
+    var banner = document.getElementById('cookie-banner');
+    
+    if (!consent) {
+      banner.style.display = 'block';
+    }
+    
+    document.getElementById('cookie-accept').addEventListener('click', function() {
+      localStorage.setItem('cookie_consent', 'accepted');
+      banner.style.display = 'none';
+    });
+    
+    document.getElementById('cookie-reject').addEventListener('click', function() {
+      localStorage.setItem('cookie_consent', 'rejected');
+      banner.style.display = 'none';
+      // Optional: disable Clarity if rejected
+      if (window.clarity) {
+        window.clarity('consent', false);
+      }
+    });
+  })();
+</script>
+
 </body>
 </html>
 
