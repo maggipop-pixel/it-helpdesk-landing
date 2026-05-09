@@ -1050,19 +1050,7 @@
       observer.observe(beforeAfterSection);
     }
 
-    const form = document.querySelector("form");
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const button = form.querySelector("button[type='submit']");
-      const original = button.textContent;
-      button.textContent = "Thanks! We will contact you shortly.";
-      button.disabled = true;
-      setTimeout(() => {
-        button.textContent = original;
-        button.disabled = false;
-        form.reset();
-      }, 2400);
-    });
+
   </script>
 <!-- Chat Widget -->
 <style>
