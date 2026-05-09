@@ -675,6 +675,15 @@
         font-size: 0.93rem;
       }
     }
+
+    .input-group select option {
+      background-color: #0a0e1a;
+      color: #ffffff;
+    }
+
+    .input-group select {
+      color: #ffffff;
+    }
   </style>
   <script defer src="/_vercel/insights/script.js"></script>
   <script type="text/javascript">
@@ -968,35 +977,41 @@
           </p>
           <p class="muted">Built for IT leaders at mid-size companies and scaling startups that need faster, smarter support operations.</p>
         </div>
-        <form class="reveal" action="#" method="post">
-          <div class="input-group">
-            <label for="name">Name</label>
-            <input id="name" name="name" type="text" required>
-          </div>
-          <div class="input-group">
-            <label for="company">Company</label>
-            <input id="company" name="company" type="text" required>
-          </div>
-          <div class="input-group">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" required>
-          </div>
-          <div class="input-group">
-            <label for="employees">Number of employees</label>
-            <select id="employees" name="employees" required>
-              <option value="" selected disabled>Select range</option>
-              <option>10-50</option>
-              <option>50-200</option>
-              <option>200-500</option>
-              <option>500+</option>
-            </select>
-          </div>
-          <div class="input-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Tell us about your current helpdesk setup"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Book My Free Demo</button>
-        </form>
+       <form class="reveal" action="https://api.web3forms.com/submit" method="POST" id="contactForm">
+  <input type="hidden" name="access_key" value="1a9ea3aa-41f1-4948-9a75-78623082939f">
+  <input type="hidden" name="subject" value="🎯 New Lead - IT Service Desk AI">
+  <input type="hidden" name="from_name" value="IT Service Desk AI Website">
+  <input type="hidden" name="redirect" value="https://cal.com/maggie-zavala.ia/demoit">
+  <input type="checkbox" name="botcheck" style="display: none;">
+  
+  <div class="input-group">
+    <label for="name">Name</label>
+    <input id="name" name="name" type="text" required>
+  </div>
+  <div class="input-group">
+    <label for="company">Company</label>
+    <input id="company" name="company" type="text" required>
+  </div>
+  <div class="input-group">
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" required>
+  </div>
+  <div class="input-group">
+    <label for="employees">Number of employees</label>
+    <select id="employees" name="employees" required>
+      <option value="" selected disabled>Select range</option>
+      <option value="10-50">10-50</option>
+      <option value="50-200">50-200</option>
+      <option value="200-500">200-500</option>
+      <option value="500+">500+</option>
+    </select>
+  </div>
+  <div class="input-group">
+    <label for="message">Message</label>
+    <textarea id="message" name="message" placeholder="Tell us about your current helpdesk setup"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Book My Free Demo →</button>
+</form>
       </div>
     </section>
   </main>
