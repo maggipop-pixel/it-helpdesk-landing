@@ -684,6 +684,44 @@
     .input-group select {
       color: #ffffff;
     }
+
+.why-built-bullets {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bullet-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.bullet-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.bullet-item p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 720px) {
+  .why-built-bullets {
+    grid-template-columns: 1fr;
+  }
+}
+    
   </style>
   <script defer src="/_vercel/insights/script.js"></script>
   <script type="text/javascript">
@@ -820,6 +858,40 @@
         </div>
       </div>
     </section>
+
+    <section class="section" id="why-built">
+  <div class="container">
+    <div class="reveal" style="text-align: center; max-width: 800px; margin: 0 auto;">
+      <span class="eyebrow">The Story</span>
+      <h2>Why I Built This</h2>
+      <p class="section-subtext" style="margin-top: 16px;">
+        Built by an AI automation specialist with 10+ years in IT service desk operations — including support for global enterprises like Diageo and Zimmer Biomet via Tata Consultancy Services.
+      </p>
+      <p class="muted" style="margin-top: 24px; line-height: 1.7;">
+        I lived the problem before I built the solution. Years of handling repetitive tickets, fielding the same password resets at 2am, and watching skilled engineers burn out on issues AI could resolve in seconds — that's what shaped IT Service Desk AI. This isn't a product designed by founders who Googled "helpdesk pain points." It's built from a decade inside the trenches.
+      </p>
+    </div>
+
+    <div class="why-built-bullets reveal">
+      <div class="bullet-item">
+        <span class="bullet-icon">🎧</span>
+        <p><strong>10+ years</strong> in IT service desk and operations</p>
+      </div>
+      <div class="bullet-item">
+        <span class="bullet-icon">🌐</span>
+        <p><strong>Bilingual specialist</strong> — English & Spanish support</p>
+      </div>
+      <div class="bullet-item">
+        <span class="bullet-icon">🏢</span>
+        <p><strong>Enterprise experience</strong> — Diageo, Zimmer Biomet (via TCS)</p>
+      </div>
+      <div class="bullet-item">
+        <span class="bullet-icon">🤖</span>
+        <p><strong>AI specialization</strong> — n8n, intelligent agents, automation</p>
+      </div>
+    </div>
+  </div>
+</section>
 
     <section class="section" id="pricing">
       <div class="container">
